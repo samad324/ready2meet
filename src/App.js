@@ -5,11 +5,6 @@ import Routers from './Router/Router';
 import './bootstrap.min.css'
 
 class App extends Component {
-  constructor(props){
-    super(props)
-  }
-
-
 
   render() {
     return (

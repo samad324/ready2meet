@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Menu, Icon } from 'antd';
+import { Button, Icon } from 'antd';
 
 
 
@@ -22,8 +22,12 @@ export default class extends React.Component {
     }
 
     render() {
+        const { loading } = this.state
         return (
             <Button type="primary" loading={this.state.loading} onClick={this.enterLoading}>
+                {
+                    !loading && <Icon type="facebook" theme="outlined" />
+                }
                 {this.props.name}
             </Button>
         )

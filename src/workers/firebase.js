@@ -31,7 +31,7 @@ const faceookLogin = () => {
 }
 
 const getUserData = (uid) => {
-    return new Promise((reject, resolve) => {
+    return new Promise((resolve, reject) => {
         firestore.collection('users').doc(uid)
             .get().then((snapshot) => {
                 resolve(snapshot.data())
@@ -41,5 +41,16 @@ const getUserData = (uid) => {
     })
 }
 
+const saveUser = (uid, data) => {
+    return new Promise((resolve, reject) => {
+        firestore.collection('users').doc(uid)
+            .set(data).then((res) => {
+                resolve(res)
+            }).catch(err => {
+                reject(err)
+            })
+    })
+}
 
-export default { faceookLogin, getUserData }
+
+export default { faceookLogin, getUserData, saveUser }

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.10.1",
+    "cloudinary": "^1.11.0",
     "firebase": "^5.5.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",

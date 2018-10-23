@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../workers/firebase';
 import Button from '../components/loadingButton';
+import swal from "sweetalert";
 import { connect } from 'react-redux';
 import { saveUser, savePersonalInfo } from '../Store/Actions/Action';
 
@@ -16,23 +17,33 @@ class Home extends React.Component {
         firebase.faceookLogin().then((res) => {
             this.props.userInfo(res.token, res.user);
             firebase.getUserData(res.user.uid).then(user => {
+                console.log(user)
                 if (user) {
-                    this.props.savePersonalInfo(user);
+                    this.props.userPersonalInfo(user);
+                    this.props.history.push(`/dashboard/${res.user.uid}`);
+                } else {
+                    this.props.history.push(`/set-profile/${res.user.uid}`);
                 }
             }).catch(err => {
-                this.props.history.push(`/set-profile/${res.user.uid}`);
+                swal('Error!!', err, 'error');
             })
+        }).catch((err) => {
+            swal('ERROR!!', err, 'error')
         })
     }
 
     render() {
         return (
-            <div className="d-flex align-items-center justify-content-center" style={{ height: "100vh" }}>
-                <Button handleClick={this.login} name='Login With Facebook'></Button>
+            <div className="homeBackground">
+                <div className="d-flex flex-column align-items-center justify-content-center layer">
+                    <h2 className='font-mali display-md-2 display-sm-3 display-xs-5 mb-5 text-light'>Ready 2 Meat</h2>
+                    <Button handleClick={this.login} name='Login With Facebook'></Button>
+                </div>
             </div>
         );
     }
 }
+
 
 
 const mapAllStateFromStore = (state) => {

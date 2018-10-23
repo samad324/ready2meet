@@ -1,6 +1,5 @@
 import React from 'react';
 import MyMapComponent from '../components/map'
-import { lang } from 'moment';
 
 
 
