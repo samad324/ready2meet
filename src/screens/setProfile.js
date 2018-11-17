@@ -131,10 +131,11 @@ class setProfile extends React.Component {
         } else if (currentSlide === 4) {
             Promise.all(cloudinary.saveImgs(images))
                 .then(res => {
-                    res = res.map(item => {
+                    res = res.filter(item => {
                         if (item.secure_url) {
                             return item.secure_url
                         }
+                        return false
                     })
                     const data = {
                         userName,
@@ -142,7 +143,8 @@ class setProfile extends React.Component {
                         images: res,
                         bavarages,
                         times,
-                        location: { lat, long }
+                        location: { lat, long },
+                        token: this.props.token
                     }
                     console.log(data)
                     firebase.saveUser(userData.uid, data).then(user => {
@@ -197,21 +199,25 @@ class setProfile extends React.Component {
 
                     <div>
                         <div style={{ height: '99.8vh', overflow: "hidden" }} className='d-flex flex-column align-items-center justify-content-center'>
-                            <div>
+                            <div style={{ width: "70%" }}>
+                                <h5 className='font-mali text-light mb-0 pb-0 mt-3'>Your nickname please....</h5>
                                 <Input
                                     placeholder="nikename"
                                     className='my-3'
                                     onChange={(e) => { this.setState({ userName: e.target.value }) }}
                                     value={userName}
+                                    size="large"
                                 />
+                                <h5 className='font-mali text-light mb-3 pb-0 mt-3'>Your nickname please....</h5>
                                 <Input
                                     placeholder="mobile number"
                                     type='number'
                                     onChange={(e) => { this.setState({ phoneNumber: e.target.value }) }}
                                     value={phoneNumber}
+                                    size="large"
                                 />
                             </div>
-                            <div className='mt-2'>
+                            <div className='mt-4'>
                                 <Button onClick={this.next} type='primary'>Next</Button>
                             </div>
                         </div>
@@ -221,7 +227,8 @@ class setProfile extends React.Component {
 
                     <div>
                         <div style={{ height: '99.8vh', overflow: "auto" }}>
-                            <div className='container mt-5'>
+                            <div className='container mt-5 pt-5'>
+                                <h5 className='font-mali text-light mb-3 pb-0 mt-3'>Upload your images please....</h5>
                                 <div className='row' style={{ width: "100%" }}>
                                     <div className='col-cm-12 col-md-4' style={{ height: "300px" }}>
                                         <div className='d-flex flex-column justify-content-center align-items-center  border border-white rounded' style={{ height: "80%" }}>
@@ -287,6 +294,7 @@ class setProfile extends React.Component {
                     <div>
                         <div style={{ height: '99.8vh', overflow: "hidden" }} className=''>
                             <div className='container mt-5'>
+                                <h5 className='font-mali text-light mb-3 pb-0 mt-3'>Select bavarages please....</h5>
                                 <div className="row w-100" >
                                     <div className="col-sm-12 col-md-4 p-3 d-flex justify-content-center">
                                         <div className='' style={{ height: "180px" }} id='cocktail' onClick={this.selectbavarage.bind(this, 'cocktail')}>
@@ -313,6 +321,7 @@ class setProfile extends React.Component {
                                         </div>
                                     </div>
                                 </div>
+                                <h5 className='font-mali text-light mb-3 pb-0 mt-3'>Select time please....</h5>
                                 <div className="row w-100" >
                                     <div className="col-sm-12 col-md-4 p-3 d-flex justify-content-center">
                                         <div className='' style={{ height: "180px" }} id='20' onClick={this.selectTime.bind(this, '20')}>
@@ -401,7 +410,8 @@ const styles = {
 
 const mapAllStateFromStore = (state) => {
     return {
-        userData: state.userData
+        userData: state.userData,
+        token: state.userToken
     }
 }
 

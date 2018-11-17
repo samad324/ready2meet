@@ -42,6 +42,7 @@ const getUserData = (uid) => {
 }
 
 const saveUser = (uid, data) => {
+    console.log('?>>>>?', uid, data)
     return new Promise((resolve, reject) => {
         firestore.collection('users').doc(uid)
             .set(data).then((res) => {
@@ -52,5 +53,21 @@ const saveUser = (uid, data) => {
     })
 }
 
+const getAllUsers = () => {
+    return new Promise((resolve, reject) => {
+        firestore.collection('users')
+            .get().then(users => resolve(users))
+            .catch(err => reject(err))
+    })
+}
 
-export default { faceookLogin, getUserData, saveUser }
+const updateToken = (token, uid) => {
+
+    firestore.collection('users')
+        .doc(uid)
+        .set({ token }, { merge: true })
+
+}
+
+
+export default { faceookLogin, getUserData, saveUser, getAllUsers, updateToken }

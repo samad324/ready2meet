@@ -1,0 +1,125 @@
+  
+  @font-face {
+    font-family: Courgette;
+    src: url("../assets/fonts/Mali-MediumItalic.ttf");
+  }
+  .rhombus{
+    box-shadow: -1px -2px 12px rgba(33,33,34,0.87);
+  }
+  .logo-wrapper {
+    position: absolute;
+    left: 40%;
+    right: 50%;
+    top:30%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100vh;
+    max-width:420px ;
+    height: auto;
+    text-shadow: -1px -2px 12px rgba(33,33,34,0.87);
+  }
+
+  .heading{
+    display: none
+  }
+
+  @media(max-width: 664px){
+    .logo-wrapper{
+      max-width: 320px;
+    }
+  }
+  @media(max-width: 480px){
+    .logo-wrapper{
+     display: none;
+    }
+    .heading{
+      display: inline-block
+    }
+  }
+  
+  .logo-wrapper #logo-webbab {
+    overflow: visible;
+  }
+  
+  .logo-wrapper #logo-webbab .word {
+    fill: #fff;
+    opacity: 0;
+    font-family: Courgette;
+  }
+  
+  .logo-wrapper #logo-webbab #mask #alpha {
+    fill: #fff;
+  }
+  
+  .logo-wrapper #iso {
+    fill: #fff;
+    opacity: 0;
+    -webkit-mask: url(#mask);
+            mask: url(#mask);
+  }
+  
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+  }
+  
+  body {
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/458169.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    -ms-background-size: cover;
+    background-size: cover;
+  }
+  
+  .control {
+    margin: 2em 0;
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    -webkit-transform: translate(-50%, 0%);
+            transform: translate(-50%, 0%);
+    width: 100%;
+  }
+  
+  .control ul {
+    display: block;
+    margin: 0;
+  }
+  
+  .control ul li {
+    display: inline-block;
+    margin: 1em 0.5em;
+  }
+  
+  .control ul li a {
+    border-bottom: 1px solid #eee;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.7em 2.5em 0.5em;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    -webkit-transition: color 500ms ease, border 500ms ease;
+    transition: color 500ms ease, border 500ms ease;
+  }
+  
+  .control ul li a:hover {
+    color: #ccc;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .cf:before,
+  .cf:after {
+    content: " ";
+    display: table;
+  }
+  
+  .cf:after {
+    clear: both;
+  }
+  
+  .cf {
+    *zoom: 1;
+  }
+  /*# sourceMappingURL=styles.css.map */
